@@ -5,7 +5,6 @@ members = [
     "tailwind-rs",
     "tailwind-error",
     "tailwind-macro",
-    "tailwind-show",
     "tailwind-css",
 ]
 default-members = ["tailwind-cli", "tailwind-rs", "tailwind-css"]
@@ -16,9 +15,7 @@ tailwind-cli = { path = "tailwind-cli" }
 tailwind-rs = { path = "tailwind-rs" }
 tailwind-error = { path = "tailwind-error" }
 tailwind-macro = { path = "tailwind-macro" }
-tailwind-show = { path = "tailwind-show" }
 tailwind-css = { path = "tailwind-css" }
-
 
 [profile.dev]
 opt-level = 1
