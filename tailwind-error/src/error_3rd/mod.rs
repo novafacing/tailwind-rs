@@ -16,8 +16,8 @@ mod for_lsp;
 mod for_nom;
 #[cfg(feature = "num")]
 mod for_num;
-#[cfg(feature = "parcel_css")]
-mod for_parcel_css;
+#[cfg(feature = "lightningcss")]
+mod for_lightningcss;
 #[cfg(feature = "pest")]
 mod for_pest;
 #[cfg(feature = "rsass")]

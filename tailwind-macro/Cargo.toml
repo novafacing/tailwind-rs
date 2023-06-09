@@ -13,7 +13,7 @@ edition = "2018"
 proc-macro = true
 
 [dependencies]
-tailwind-css = "0.12.4"
+tailwind-css = { workspace = true }
 quote = "1.0.21"
 syn = { version = "1.0.101", features = ["full", "extra-traits"] }
 

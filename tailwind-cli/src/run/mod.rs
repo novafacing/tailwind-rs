@@ -53,8 +53,10 @@ impl TailwindApp {
             return c.run(config);
         };
 
-        for entry in glob("**/*.html")? {
-            let file = entry?;
+        for entry in glob("**/*.html")
+            .map_err(|e| TailwindError::runtime_error(format!("Error getting paths from html files: {}", e)))?
+        {
+            let file = entry.map_err(|e| TailwindError::runtime_error(format!("Error getting path: {}", e)))?;
             let input = read_to_string(&file)?;
             let ext = get_extension(&file).ok_or_else(|| TailwindError::runtime_error("no extension"))?;
             match ext {

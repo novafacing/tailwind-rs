@@ -19,9 +19,9 @@ rust_decimal = { version = "1.26.1", optional = true }
 pest = { version = "2.3.1", optional = true }
 glob = { version = "0.3.0", optional = true }
 globset = { version = "0.4.9", optional = true }
-lsp-types = { version = "0.93.1", optional = true }
+lsp-types = { version = "0.94.0", optional = true }
 chrono = { version = "0.4.22", optional = true }
-parcel_css = { version = "1.0.0-alpha.32", optional = true }
+lightningcss = { version = "1.0.0-alpha.42", optional = true }
 css-color = { version = "0.2.4", optional = true }
 
 [dev-dependencies]
