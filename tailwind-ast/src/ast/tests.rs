@@ -48,6 +48,7 @@ fn test_style() {
         variants: vec![],
         elements: vec!["full"],
         arbitrary: None,
+        important: false,
     };
     assert_eq!(input, output);
     let input = AstStyle::parse("-top-1").unwrap().1;
@@ -57,6 +58,7 @@ fn test_style() {
         variants: vec![],
         elements: vec!["top", "1"],
         arbitrary: None,
+        important: false,
     };
     assert_eq!(input, output);
     let input = AstStyle::parse("not-hover:sm:text-red-[200/50]").unwrap().1;
@@ -69,6 +71,7 @@ fn test_style() {
         ],
         elements: vec!["text", "red"],
         arbitrary: Some("200/50"),
+        important: false,
     };
     assert_eq!(input, output);
 }
@@ -83,21 +86,30 @@ fn test_style() {
 fn test_group() {
     let input = AstGroup::parse("w(full sm:auto)").unwrap().1;
     let output = AstGroup {
-        head: AstStyle { negative: false, variants: vec![], elements: vec!["w"], arbitrary: None },
+        head: AstStyle {
+            negative: false,
+            variants: vec![],
+            elements: vec!["w"],
+            arbitrary: None,
+            important: false,
+        },
         children: vec![
             Styled(AstStyle {
                 negative: false,
                 variants: vec![],
                 elements: vec!["full"],
                 arbitrary: None,
+                important: false,
             }),
             Styled(AstStyle {
                 negative: false,
                 variants: vec![ASTVariant { not: false, pseudo: false, names: vec!["sm"] }],
                 elements: vec!["auto"],
                 arbitrary: None,
+                important: false,
             }),
         ],
+        important: false,
     };
     assert_eq!(input, output);
     let input = AstGroup::parse("rotate(-3 hover:6 md:(3 hover:-6))").unwrap().1;
@@ -107,6 +119,7 @@ fn test_group() {
             variants: vec![],
             elements: vec!["rotate"],
             arbitrary: None,
+            important: false,
         },
         children: vec![
             Styled(AstStyle {
@@ -114,12 +127,14 @@ fn test_group() {
                 variants: vec![],
                 elements: vec!["3"],
                 arbitrary: None,
+                important: false,
             }),
             Styled(AstStyle {
                 negative: false,
                 variants: vec![ASTVariant { not: false, pseudo: false, names: vec!["hover"] }],
                 elements: vec!["6"],
                 arbitrary: None,
+                important: false,
             }),
             Grouped(AstGroup {
                 head: AstStyle {
@@ -127,6 +142,7 @@ fn test_group() {
                     variants: vec![ASTVariant { not: false, pseudo: false, names: vec!["md"] }],
                     elements: vec![],
                     arbitrary: None,
+                    important: false,
                 },
                 children: vec![
                     Styled(AstStyle {
@@ -134,6 +150,7 @@ fn test_group() {
                         variants: vec![],
                         elements: vec!["3"],
                         arbitrary: None,
+                        important: false,
                     }),
                     Styled(AstStyle {
                         negative: true,
@@ -144,10 +161,13 @@ fn test_group() {
                         }],
                         elements: vec!["6"],
                         arbitrary: None,
+                        important: false,
                     }),
                 ],
+                important: false,
             }),
         ],
+        important: false,
     };
     assert_eq!(input, output);
     let input = AstGroup::parse("bg-blue-500(hover:& focus:& active:&)").unwrap().1;
@@ -157,6 +177,7 @@ fn test_group() {
             variants: vec![],
             elements: vec!["bg", "blue", "500"],
             arbitrary: None,
+            important: false,
         },
         children: vec![
             Styled(AstStyle {
@@ -164,20 +185,24 @@ fn test_group() {
                 variants: vec![ASTVariant { not: false, pseudo: false, names: vec!["hover"] }],
                 elements: vec!["&"],
                 arbitrary: None,
+                important: false,
             }),
             Styled(AstStyle {
                 negative: false,
                 variants: vec![ASTVariant { not: false, pseudo: false, names: vec!["focus"] }],
                 elements: vec!["&"],
                 arbitrary: None,
+                important: false,
             }),
             Styled(AstStyle {
                 negative: false,
                 variants: vec![ASTVariant { not: false, pseudo: false, names: vec!["active"] }],
                 elements: vec!["&"],
                 arbitrary: None,
+                important: false,
             }),
         ],
+        important: false,
     };
     assert_eq!(input, output);
 }
